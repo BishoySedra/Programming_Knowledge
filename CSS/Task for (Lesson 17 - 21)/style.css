@@ -1,0 +1,52 @@
+.First-assignment {
+    text-transform: capitalize;
+    text-shadow: 0.5px 0.5px #f44336, 1px 1px #2196f3, 1.5px 1.5px purple;
+}
+
+.one {
+    text-transform: uppercase;
+}
+
+.two {
+    text-transform: capitalize;
+}
+
+.three {
+    text-transform: lowercase;
+}
+
+.first,
+.second,
+.third {
+    background-color: #eee;
+    width: 400px;
+    padding: 20px;
+    margin-bottom: 12px;
+}
+
+.second {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.third {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+a {
+    display: inline-block;
+    margin-left: 50%;
+    margin-right: 50%;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #009688;
+    padding: 20px;
+    font-size: 25px;
+    width: 120px;
+    text-transform: capitalize;
+    font-weight: bold;
+    border-bottom: solid 12px #00514a;
+}

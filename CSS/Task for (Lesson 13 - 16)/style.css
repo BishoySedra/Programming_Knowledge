@@ -1,0 +1,23 @@
+.parent .child .title {
+    color: red;
+}
+
+.parent .title {
+    color: blue;
+}
+
+.parent p,
+.title {
+    color: green;
+}
+
+.MyDiv{
+    background-color: brown;
+    color: white;
+    margin-bottom: 12px;
+    padding: 12px;
+    width: fit-content;
+    max-width: 400px;
+    max-height: 100px;
+    overflow-y: hidden;
+}
