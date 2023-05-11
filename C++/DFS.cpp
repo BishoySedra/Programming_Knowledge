@@ -15,48 +15,92 @@
 
 using namespace std;
 
-unordered_map<int, bool> visited;
+unordered_map<int, int> visited;
 unordered_map<int, vector<int>> graph;
 
-void DFS(int node)
+// check if undirected graph is cyclic or acyclic
+bool isCyclic(int node, int p)
 {
-    if (visited[node])
-    {
-        return;
-    }
-
-    // cout << node << " ";
-
     visited[node] = true;
 
     for (auto neighbour : graph[node])
     {
-        DFS(neighbour);
+        if (visited[neighbour] && neighbour != p)
+        {
+            return true;
+        }
+        else if (!visited[neighbour])
+        {
+            if (isCyclic(neighbour, node))
+            {
+                return true;
+            }
+        }
     }
+
+    return false;
+}
+
+// check if directed graph is cyclic or acyclic
+int const VISITED = 2, PROGRESS = 1, NOT_VISITED = 0;
+bool isCyclic(int node)
+{
+
+    visited[node] = PROGRESS;
+
+    for (auto neighbour : graph[node])
+    {
+        if (visited[neighbour] == NOT_VISITED)
+        {
+            if (isCyclic(neighbour))
+                return true;
+        }
+        else if (visited[neighbour] == PROGRESS)
+        {
+            return true;
+        }
+    }
+
+    visited[node] = VISITED;
+
+    return false;
+}
+
+// DFS Algorithm implementation recursive
+void DFS(int node)
+{
+    visited[node] = true;
+
+    for (auto neighbour : graph[node])
+    {
+        if (!visited[neighbour])
+        {
+            DFS(neighbour);
+        }
+    }
+
+    cout << node << " ";
 }
 
 void solve()
 {
-    int n, m, u, v;
+    int n, m, u, v, node;
     cin >> n >> m;
     for (int i = 0; i < m; i++)
     {
         cin >> u >> v;
         graph[u].push_back(v);
-        graph[v].push_back(u);
     }
 
-    int cnt = 0;
     for (auto it : graph)
     {
         if (!visited[it.first])
         {
-            cnt++;
             DFS(it.first);
         }
     }
 
-    cout << ((cnt == 1 && m == n - 1) ? "YES" : "NO");
+    // 2 4 3 1 5 0
 }
 
 int main()
