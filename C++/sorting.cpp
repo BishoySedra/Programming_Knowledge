@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
+#include <vector>
 
 #define speed ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 #define el "\n"
@@ -62,9 +63,8 @@ void testMerge()
 }
 
 // divide & conquer algo to sort using merge
-void mergeSort(int *arr, int n) // O( n log(n) )
+void mergeSort(int *arr, int n) // O( n log(n) ) => tree height = log(n) and operations in each level = n;
 {
-
     if (n < 2)
     {
         return;
@@ -124,8 +124,102 @@ void pairSumProblemSolve() // O(n)
     cout << "No";
 }
 
+// solve pair of topics problem
+void pairOfTopicsProblemSolve()
+{
+    ll n, num;
+    cin >> n;
+
+    vector<ll> a(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> num;
+        a[i] -= num;
+    }
+
+    sort(a.begin(), a.end());
+
+    ll cnt = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        auto it = upper_bound(a.begin() + i + 1, a.end(), -a[i]);
+        cnt += a.begin() + n - it;
+    }
+
+    cout << cnt;
+}
+
+// testing unique built-in function
+void uniqueFunction()
+{
+    int arr[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10};
+    int size = sizeof arr / sizeof arr[0];
+
+    auto it = unique(arr, arr + size); // O(n)
+    size = it - arr;                   // new size of unique values in the array
+
+    sort(arr, arr + size); // O(n*log(n))
+
+    cout << size << el;
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+}
+
+// sort array using comparator function
+bool comparator(int first, int second)
+{
+    return first > second;
+
+    // if (first > second)
+    // {
+    //     return true; // do nothing
+    // }
+    // else
+    // {
+    //     return false; // do swapping
+    // }
+}
+
+bool oddBeforeEven(int first, int second)
+{
+    return (first & 1) && !(second & 1) || (first & 1) == (second & 1);
+
+    // if ((first & 1) && !(second & 1) || (first & 1) == (second & 1))
+    // {
+    //     return true; // do nothing
+    // }
+    // else
+    // {
+    //     return false; // do swapping
+    // }
+}
+
+void mySort()
+{
+    int arr[] = {4, 3, 2, 5, 7};
+    int size = sizeof arr / sizeof arr[0];
+
+    // sort(arr, arr + size, comparator);
+    sort(arr, arr + size, oddBeforeEven);
+
+    for (auto elem : arr)
+    {
+        cout << elem << " ";
+    }
+}
+
 int main()
 {
     speed;
+    mySort();
     return 0;
 }
