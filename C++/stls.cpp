@@ -1,6 +1,3 @@
-
-
-// another solution
 #include <iostream>
 #include <unordered_map>
 #include <map>
@@ -26,15 +23,18 @@ using namespace std;
 
 void solve()
 {
-    
+    vector<int> arr({1, 2, 3, 4, 5});
+    arr.erase(arr.begin() + 2);
+    arr.erase(arr.end() - 2);
+
+    for (auto elem : arr)
+    {
+        cout << elem << " ";
+    }
 }
 
 int main()
 {
-    // // For getting input from input.txt file
-    // freopen("input.txt", "r", stdin);
-    // //    // Printing the Output to output.txt file
-    // freopen("output.txt", "w", stdout);
     speed;
     solve();
     return 0;
