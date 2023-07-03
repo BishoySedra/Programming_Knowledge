@@ -1,24 +1,23 @@
-const http = require('http');
 const fs = require('fs');
 
-const server = http.createServer((req, res) => {
+const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
 
     if (url === '/') {
         res.write(`
-        <html>
-        <head>
-        <title>Send a message!!</title>
-        </head>
-        <body>
-        <form action = "/message" method = "POST"> 
-        <input type = "text" name = "message">
-        <button type = "submit">Send!</button>
-        </form>
-        </body>
-        </html>
-        `);
+            <html>
+            <head>
+            <title>Send a message!!</title>
+            </head>
+            <body>
+            <form action = "/message" method = "POST"> 
+            <input type = "text" name = "message">
+            <button type = "submit">Send!</button>
+            </form>
+            </body>
+            </html>
+            `);
         return res.end();
     }
 
@@ -45,16 +44,24 @@ const server = http.createServer((req, res) => {
 
     res.setHeader('type', 'text/html');
     res.write(`
-    <html>
-    <head>
-    <title>My First Node.js Page</title>
-    </head>
-    <body>
-    <h1>Hello From My First Node.js Server!!!</h1>
-    </body>
-    </html>
-    `);
+        <html>
+        <head>
+        <title>My First Node.js Page</title>
+        </head>
+        <body>
+        <h1>Hello From My First Node.js Server!!!</h1>
+        </body>
+        </html>
+        `);
     res.end();
-});
+}
 
-server.listen(8000);
+// module.exports = requestHandler;
+
+// module.exports = {
+//     request: requestHandler,
+//     text: 'Some Hard Coded Text!!'
+// };
+
+exports.request = requestHandler;
+exports.text = 'Some Hard Coded Text!!';
