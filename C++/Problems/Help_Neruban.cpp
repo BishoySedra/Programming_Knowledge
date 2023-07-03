@@ -117,10 +117,10 @@ void solve2()
 
 int main()
 {
-    // For getting input from input.txt file
-    freopen("input.txt", "r", stdin);
-    // Printing the Output to output.txt file
-    freopen("output.txt", "w", stdout);
+    // // For getting input from input.txt file
+    // freopen("input.txt", "r", stdin);
+    // // Printing the Output to output.txt file
+    // freopen("output.txt", "w", stdout);
     speed;
     solve1();
     return 0;

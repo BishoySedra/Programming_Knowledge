@@ -1,14 +1,8 @@
-
-
-// another solution
 #include <iostream>
-#include <unordered_map>
-#include <map>
-#include <vector>
+#include <stack>
+#include <queue>
+#include <string>
 #include <algorithm>
-#include <iomanip>
-#include <math.h>
-#include <set>
 
 #define speed ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 #define el "\n"
@@ -16,26 +10,49 @@
 #define tc       \
     long long t; \
     cin >> t;    \
-    while (t--)
+    while (t--)  \
+    {            \
+    }
+
 #define ON(n, k) (n | (1 << k))
 #define OFF(n, k) (n & ~(1 << k))
 #define isOn(n, k) ((n >> k) & 1)
 #define isPowerOfTwo(n) n && !(n & (n - 1))
+#define file                          \
+    freopen("input.txt", "r", stdin); \
+    freopen("output.txt", "w", stdout);
 
 using namespace std;
 
 void solve()
 {
-    
+    int n, k, num;
+    cin >> n >> k;
+
+    deque<int> dq(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> dq[i];
+    }
+
+    int end = k;
+    while (end <= dq.size()) // O(n-1)
+    {
+        cout << *max_element(dq.begin(), dq.begin() + end) << " ";
+        dq.pop_front();
+    }
+    cout << el;
 }
 
 int main()
 {
-    // // For getting input from input.txt file
-    // freopen("input.txt", "r", stdin);
-    // //    // Printing the Output to output.txt file
-    // freopen("output.txt", "w", stdout);
+    // file;
     speed;
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
     return 0;
 }
