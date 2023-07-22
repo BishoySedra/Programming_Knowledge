@@ -122,6 +122,6 @@ int main()
     {
         cin >> arr[i];
     }
-    cout << sum(arr, 0);
+    cout << fixed << setprecision(6) << sum(arr, 0) / static_cast<double>(n);
     return 0;
 }

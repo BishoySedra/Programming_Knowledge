@@ -32,10 +32,10 @@ const requestHandler = (req, res) => {
 
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
-            let message = parsedBody.split('=')[1].replace(/\+/g, ' ');
+            let message = parsedBody.split('=')[0].replace(/\+/g, ' ');
             console.log(message);
             fs.writeFile('message.txt', `${message}\n`, { flag: 'a' }, () => {
-                res.statusCode = 302;
+                res.statusCode = 302; // statusCode to redirect the previous page
                 res.setHeader("location", "/");
                 return res.end();
             });

@@ -82,7 +82,7 @@ void sieve()
     {
         if (primes[i])
         {
-            for (ll j = i * 2; j <= N; j += i)
+            for (ll j = i * i; j <= N; j += i)
             {
                 primes[j] = false;
             }

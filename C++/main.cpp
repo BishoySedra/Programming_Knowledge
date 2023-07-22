@@ -15,30 +15,75 @@
 
 using namespace std;
 
-ll fact(ll n)
+vector<ll> getDivisors(ll n) // O(sqrt(n))
 {
-    if (n == 1 || n == 0)
+    vector<ll> res;
+
+    ll i = 1;
+    for (i = 1; i * i < n; i++)
     {
-        return 1;
+        if (n % i == 0)
+        {
+            res.push_back(i);
+            res.push_back(n / i);
+        }
     }
 
-    return n * fact(n - 1);
+    if (i * i == n)
+    {
+        res.push_back(i);
+    }
+
+    return res;
+}
+
+void printVector(vector<ll> v)
+{
+    for (auto elem : v)
+    {
+        cout << elem << " ";
+    }
 }
 
 void solve()
 {
+    ll n, num;
+    cin >> n;
+
+    unordered_map<ll, ll> mp;
+    forN(n) // O(n * sqrt(num)) overall
+    {
+        cin >> num;
+
+        vector<ll> arr = getDivisors(num); // O(sqrt(num))
+        for (auto elem : arr)
+        {
+            mp[elem]++;
+        }
+    }
+
+    ll cnt = 0;
+    for (auto it : mp)
+    {
+        if (it.second == n)
+        {
+            cnt++;
+        }
+    }
+
+    cout << cnt;
 }
 
 int main()
 {
     // file;
     boost;
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
-    // solve();
+    // ll t;
+    // cin >> t;
+    // while (t--)
+    // {
+    //     solve();
+    // }
+    solve();
     return 0;
 }
