@@ -17,6 +17,7 @@ const shopRoutes = require('./routes/shop');
 
 // for parsing body data
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes used in application
@@ -24,8 +25,9 @@ app.use('/admin', adminRoutes.router);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', 'page-not-found.html'));
+    res.status(404).render('404');
 })
 
 // port listening
-app.listen(8000, () => console.log('Server Running!!'));
+const port = 8000;
+app.listen(port, () => console.log(`Server Running on ${port}!!`));

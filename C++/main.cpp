@@ -15,34 +15,40 @@
 
 using namespace std;
 
-vector<ll> getDivisors(ll n) // O(sqrt(n))
+void printVector(vector<ll> arr)
 {
-    vector<ll> res;
+    for (auto elem : arr)
+    {
+        cout << elem << " ";
+    }
+}
 
-    ll i = 1;
-    for (i = 1; i * i < n; i++)
+void printVectorOfPairs(vector<pair<ll, ll>> pairs)
+{
+    for (auto pair : pairs)
+    {
+        cout << pair.first << " " << pair.second << el;
+    }
+}
+
+ll getDivisors(ll n)
+{
+
+    ll i = 1, cnt = 0;
+    for (ll i = 1; i * i <= n; i++)
     {
         if (n % i == 0)
         {
-            res.push_back(i);
-            res.push_back(n / i);
+            cnt += 2;
         }
     }
 
     if (i * i == n)
     {
-        res.push_back(i);
+        cnt++;
     }
 
-    return res;
-}
-
-void printVector(vector<ll> v)
-{
-    for (auto elem : v)
-    {
-        cout << elem << " ";
-    }
+    return cnt;
 }
 
 void solve()
@@ -50,40 +56,44 @@ void solve()
     ll n, num;
     cin >> n;
 
-    unordered_map<ll, ll> mp;
-    forN(n) // O(n * sqrt(num)) overall
+    vector<ll> arr(n);
+    forN(n)
     {
-        cin >> num;
+        cin >> arr[i];
+    }
 
-        vector<ll> arr = getDivisors(num); // O(sqrt(num))
-        for (auto elem : arr)
+    bool isDec = false;
+    ll cnt = 0, ans = 0;
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 0; j < i; j++)
         {
-            mp[elem]++;
+            if (isDec && arr[i] > arr[j])
+            {
+                cnt++;
+            }
+            else if (!isDec && arr[i] < arr[j])
+            {
+                cnt++;
+            }
+            isDec = !isDec;
+            ans = max(cnt, ans);
         }
     }
 
-    ll cnt = 0;
-    for (auto it : mp)
-    {
-        if (it.second == n)
-        {
-            cnt++;
-        }
-    }
-
-    cout << cnt;
+    cout << ans << el;
 }
 
 int main()
 {
-    // file;
+    file;
     boost;
-    // ll t;
-    // cin >> t;
-    // while (t--)
-    // {
-    //     solve();
-    // }
-    solve();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    // solve();
     return 0;
 }

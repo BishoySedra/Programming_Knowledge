@@ -5,13 +5,17 @@ const router = express.Router();
 const products = [];
 
 router.get('/add-product', (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+    res.render('add-product');
 });
 
 router.post('/add-product', (req, res, next) => {
     let { title } = req.body;
-    products.push(title);
-    console.log(title);
+    if (title !== '') {
+        products.push(title);
+        console.log(`${title} is Added!`);
+    }
+
+    console.log(products);
     res.redirect('/');
 });
 

@@ -73,8 +73,7 @@ bool isPrime(ll n) // O(sqrt(n))
 
 int const N = 1e6 + 6;
 bool primes[N];
-
-void sieve()
+void sieve() // O(n) => O(n*log(log(n)))
 {
     fill(primes, primes + N, true);
     primes[0] = primes[1] = false;
@@ -90,12 +89,41 @@ void sieve()
     }
 }
 
+vector<ll> PF(ll n) // O(sqrt(n))
+{
+    vector<ll> res;
+    for (int i = 2; i * i <= n; i++)
+    {
+        while (n % i == 0)
+        {
+            res.push_back(i);
+            n /= i;
+        }
+    }
+
+    if (n > 1)
+    {
+        res.push_back(n);
+    }
+
+    return res;
+}
+
 void printVector(vector<ll> v)
 {
     for (auto elem : v)
     {
         cout << elem << " ";
     }
+}
+
+// LCM * GCD = a * b
+// gcd function => O(log2n)
+// LCM => the least number is divisible by the two numbers
+// GCD => the greatest number who divides the other two numbers
+ll LCM(ll a, ll b)
+{
+    return a * (b / gcd(a, b));
 }
 
 void solve()
