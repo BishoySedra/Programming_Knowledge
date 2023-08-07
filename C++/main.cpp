@@ -53,35 +53,18 @@ ll getDivisors(ll n)
 
 void solve()
 {
-    ll n, num;
-    cin >> n;
+    ll n, m, a, b;
+    cin >> n >> m >> a >> b;
 
-    vector<ll> arr(n);
-    forN(n)
+    if (m * a <= b)
     {
-        cin >> arr[i];
+        cout << n * a;
     }
-
-    bool isDec = false;
-    ll cnt = 0, ans = 0;
-    for (int i = 1; i < n; i++)
+    else
     {
-        for (int j = 0; j < i; j++)
-        {
-            if (isDec && arr[i] > arr[j])
-            {
-                cnt++;
-            }
-            else if (!isDec && arr[i] < arr[j])
-            {
-                cnt++;
-            }
-            isDec = !isDec;
-            ans = max(cnt, ans);
-        }
+        cout << (n / m) * b + min((n % m) * a, b);
     }
-
-    cout << ans << el;
+    cout << el;
 }
 
 int main()
