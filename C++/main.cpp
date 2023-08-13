@@ -53,21 +53,27 @@ ll getDivisors(ll n)
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
-    vector<ll> arr1(5), arr2(5);
+    ll n, k;
+    cin >> n >> k;
 
-    for (ll i = 1; i <= n; i++)
+    vector<ll> arr(n);
+    for (int i = 0; i < n; i++)
     {
-        arr1[i % 5]++;
+        cin >> arr[i];
     }
 
-    for (ll i = 1; i <= m; i++)
+    sort(interval(arr));
+
+    ll cnt = 0;
+    for (int i = 2; i < n; i += 3)
     {
-        arr2[i % 5]++;
+        if (5 - arr[i] >= k)
+        {
+            cnt++;
+        }
     }
 
-    cout << arr1[0] * arr2[0] + arr1[1] * arr2[4] + arr1[2] * arr2[3] + arr1[3] * arr2[2] + arr1[4] * arr2[1];
+    cout << cnt << el;
 }
 
 int main()
