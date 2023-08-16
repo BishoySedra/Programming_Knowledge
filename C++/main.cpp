@@ -15,65 +15,39 @@
 
 using namespace std;
 
-void printVector(vector<ll> arr)
-{
-    for (auto elem : arr)
-    {
-        cout << elem << " ";
-    }
-}
-
-void printVectorOfPairs(vector<pair<ll, ll>> pairs)
-{
-    for (auto pair : pairs)
-    {
-        cout << pair.first << " " << pair.second << el;
-    }
-}
-
-ll getDivisors(ll n)
-{
-
-    ll i = 1, cnt = 0;
-    for (ll i = 1; i * i <= n; i++)
-    {
-        if (n % i == 0)
-        {
-            cnt += 2;
-        }
-    }
-
-    if (i * i == n)
-    {
-        cnt++;
-    }
-
-    return cnt;
-}
-
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
+    ll n, num;
+    cin >> n;
 
-    vector<ll> arr(n);
-    for (int i = 0; i < n; i++)
+    unordered_map<ll, vector<ll>> mp;
+    forN(n)
     {
-        cin >> arr[i];
+        cin >> num;
+        mp[num].push_back(i + 1);
     }
 
-    sort(interval(arr));
-
-    ll cnt = 0;
-    for (int i = 2; i < n; i += 3)
+    if (mp.size() != 3)
     {
-        if (5 - arr[i] >= k)
-        {
-            cnt++;
-        }
+        cout << 0 << el;
+        return;
+    }
+
+    // the maximum number of teams
+    size_t cnt = LONG_MAX;
+    for (auto it : mp)
+    {
+        cnt = min(cnt, (it.second).size());
     }
 
     cout << cnt << el;
+    forN(cnt)
+    {
+        cout << mp[1].back() << " " << mp[2].back() << " " << mp[3].back() << el;
+        mp[1].pop_back();
+        mp[2].pop_back();
+        mp[3].pop_back();
+    }
 }
 
 int main()
