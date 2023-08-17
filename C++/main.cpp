@@ -17,37 +17,32 @@ using namespace std;
 
 void solve()
 {
-    ll n, num;
+    ll n;
     cin >> n;
 
-    unordered_map<ll, vector<ll>> mp;
+    vector<ll> arr(n);
+    unordered_map<ll, ll> freq;
+    unordered_map<ll, bool> found;
     forN(n)
     {
-        cin >> num;
-        mp[num].push_back(i + 1);
+        cin >> arr[i];
+        found[arr[i]] = true;
     }
 
-    if (mp.size() != 3)
+    sort(interval(arr));
+
+    ll ans = 0;
+    for (int i = n - 1; i >= 0; i--)
     {
-        cout << 0 << el;
-        return;
+        if (found[arr[i]])
+        {
+            ans += arr[i];
+            found[arr[i] + 1] = false;
+            found[arr[i] - 1] = false;
+        }
     }
 
-    // the maximum number of teams
-    size_t cnt = LONG_MAX;
-    for (auto it : mp)
-    {
-        cnt = min(cnt, (it.second).size());
-    }
-
-    cout << cnt << el;
-    forN(cnt)
-    {
-        cout << mp[1].back() << " " << mp[2].back() << " " << mp[3].back() << el;
-        mp[1].pop_back();
-        mp[2].pop_back();
-        mp[3].pop_back();
-    }
+    cout << ans << el;
 }
 
 int main()
