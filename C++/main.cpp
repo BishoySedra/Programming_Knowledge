@@ -17,44 +17,27 @@ using namespace std;
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    string word = "username=bishoy password=122134";
+    regex regexPattern("\\w+=\\w+");
+    smatch match;
 
-    vector<ll> arr(n);
-    unordered_map<ll, ll> freq;
-    unordered_map<ll, bool> found;
-    forN(n)
+    while (regex_search(word, match, regexPattern))
     {
-        cin >> arr[i];
-        found[arr[i]] = true;
+        cout << match.str() << el;
+        word = match.suffix().str();
     }
-
-    sort(interval(arr));
-
-    ll ans = 0;
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (found[arr[i]])
-        {
-            ans += arr[i];
-            found[arr[i] + 1] = false;
-            found[arr[i] - 1] = false;
-        }
-    }
-
-    cout << ans << el;
 }
 
 int main()
 {
-    file;
+    // file;
     boost;
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
-    // solve();
+    // ll t;
+    // cin >> t;
+    // while (t--)
+    // {
+    //     solve();
+    // }
+    solve();
     return 0;
 }

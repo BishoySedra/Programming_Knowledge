@@ -27,6 +27,7 @@
 #include <typeinfo>   // Runtime type information
 #include <utility>    // Utility components (e.g., std::pair)
 #include <unordered_set>
+#include <regex>
 
 // C library headers
 #include <cstddef> // Standard definitions
