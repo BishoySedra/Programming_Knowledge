@@ -65,6 +65,27 @@ regex = /(https?:\/\/)?(www.)?\w+.\w+/gi
 
 let serials = "S100S S3000S S50000S S950000S";
 
-console.log(serials.match(/s\d{3}s/ig)); // S[Three Number]S
-console.log(serials.match(/s\d{3,5}s/ig)); // S[Four Or Five Number]S
-console.log(serials.match(/s\d{4,}s/ig)); // S[At Least Four]S
+// console.log(serials.match(/s\d{3}s/ig)); // S[Three Number]S
+// console.log(serials.match(/s\d{3,5}s/ig)); // S[Four Or Five Number]S
+// console.log(serials.match(/s\d{4,}s/ig)); // S[At Least Four]S
+
+
+/*
+  $  => End With Something
+  ^  => Start With Something
+  ?= => Followed By Something
+  ?! => Not Followed By Something
+*/
+
+let myString = "We Love Programming";
+let names = "1OsamaZ 2AhmedZ 3Mohammed 4MoustafaZ 5GamalZ";
+
+console.log((/ing$/ig).test(myString));  // end with ing
+console.log((/^we/ig).test(myString));  // start with we
+console.log((/lz$/ig).test(names));     // end with lz
+console.log((/^\d/ig).test(names));     // start with digit
+console.log(names.match(/\d\w{5}(?=z)/ig));
+// // starts with digit, contains 5 word characters followed by z
+
+console.log(names.match(/\d\w{8}(?!z)/ig));
+// starts with digit, contains 8 word characters not followed by z
