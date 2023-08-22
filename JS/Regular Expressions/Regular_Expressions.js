@@ -89,3 +89,21 @@ console.log(names.match(/\d\w{5}(?=z)/ig));
 
 console.log(names.match(/\d\w{8}(?!z)/ig));
 // starts with digit, contains 8 word characters not followed by z
+
+const readline = require('readline');
+
+string = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+string.question("", (string) => {
+  let re = /=(\w+)/ig;
+  string = string.match(re).join('').split('=').splice(1);
+  console.log(`username: ${string[0]}`);
+  console.log(`pwd: ${string[1]}`);
+  console.log(`profile: ${string[2]}`);
+  console.log(`role: ${string[3]}`);
+  console.log(`key: ${string[4]}`);
+});
+
