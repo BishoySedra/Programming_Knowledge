@@ -17,27 +17,63 @@ using namespace std;
 
 void solve()
 {
-    string word = "username=bishoy password=122134";
-    regex regexPattern("\\w+=\\w+");
-    smatch match;
+    ll n;
+    cin >> n;
 
-    while (regex_search(word, match, regexPattern))
+    vector<ll> arr(n);
+    forN(n)
     {
-        cout << match.str() << el;
-        word = match.suffix().str();
+        cin >> arr[i];
     }
+
+    if (n == 1)
+    {
+        if (arr[0] == 1)
+        {
+            cout << "YES";
+        }
+        else
+        {
+            cout << "NO";
+        }
+        cout << el;
+        return;
+    }
+
+    ll validCnt = 0, invalidCnt = 0;
+    for (int i = 1; i < n; i++)
+    {
+        if (abs(arr[i] - arr[i - 1]) <= 1)
+        {
+            validCnt++;
+        }
+        else
+        {
+            invalidCnt++;
+        }
+    }
+
+    if (validCnt > invalidCnt)
+    {
+        cout << "YES";
+    }
+    else
+    {
+        cout << "NO";
+    }
+    cout << el;
 }
 
 int main()
 {
-    // file;
+    file;
     boost;
-    // ll t;
-    // cin >> t;
-    // while (t--)
-    // {
-    //     solve();
-    // }
-    solve();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    // solve();
     return 0;
 }
