@@ -11,7 +11,7 @@ private:
     int _number;
     int _result;
     int _lastResult;
-    std::string _lastOperation;
+    string _lastOperation;
 
 public:
     Calculator(); // Constructor
