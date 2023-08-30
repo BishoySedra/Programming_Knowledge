@@ -26,6 +26,8 @@ private:
     string _phone;
 
 public:
+    // static members
+
     // constructors
     Person(int, string, string, string, string);
 
