@@ -1,7 +1,6 @@
-#ifndef CALCULATOR_H
-#define CALCULATOR_H
+#pragma once
 
-#include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -14,13 +13,62 @@ private:
     string _lastOperation;
 
 public:
-    Calculator(); // Constructor
-    void add(int number);
-    void subtract(int number);
-    void divide(int number);
-    void multiply(int number);
-    void clear();
-    void printResult();
-};
+    Calculator()
+        : _number(0), _result(0), _lastResult(0), _lastOperation("") {}
 
-#endif
+    void add(int number)
+    {
+        _number = number;
+        _lastOperation = "Adding";
+        _result += number;
+    }
+
+    void subtract(int number)
+    {
+        _number = number;
+        _lastOperation = "Subtracting";
+        _result -= number;
+    }
+
+    void divide(int number)
+    {
+        _number = number;
+        _lastOperation = "Dividing";
+        if (!number)
+        {
+            return;
+        }
+        _result /= number;
+    }
+
+    void multiply(int number)
+    {
+        _number = number;
+        _lastOperation = "Multiplying";
+        _result *= number;
+    }
+
+    void clear()
+    {
+        _lastResult = _result;
+        _result = 0;
+        _lastOperation = "Clearing";
+    }
+
+    void printResult()
+    {
+        if (_lastOperation == "Clearing")
+        {
+            cout << "The result after " << _lastOperation << " " << _lastResult << " is " << _result << "\n";
+            return;
+        }
+
+        if (_lastOperation == "Dividing" && !_number)
+        {
+            cout << "The result after " << _lastOperation << " " << _number << " is Can't Solve\n";
+            return;
+        }
+
+        cout << "The result after " << _lastOperation << " " << _number << " is " << _result << "\n";
+    }
+};

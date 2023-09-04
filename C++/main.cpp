@@ -15,58 +15,37 @@
 
 using namespace std;
 
-void solve()
+bool is_valid(ll num)
 {
-    ll n;
-    cin >> n;
-
-    vector<ll> arr(n);
-    forN(n)
+    ll sum = 0;
+    while (num)
     {
-        cin >> arr[i];
+        sum += num % 10;
+        num /= 10;
     }
+    return sum == 10;
+}
 
-    if (n == 1)
+void printVector(vector<ll> arr)
+{
+    for (auto elem : arr)
     {
-        if (arr[0] == 1)
-        {
-            cout << "YES";
-        }
-        else
-        {
-            cout << "NO";
-        }
-        cout << el;
-        return;
-    }
-
-    ll validCnt = 0, invalidCnt = 0;
-    for (int i = 1; i < n; i++)
-    {
-        if (abs(arr[i] - arr[i - 1]) <= 1)
-        {
-            validCnt++;
-        }
-        else
-        {
-            invalidCnt++;
-        }
-    }
-
-    if (validCnt > invalidCnt)
-    {
-        cout << "YES";
-    }
-    else
-    {
-        cout << "NO";
+        cout << elem << " ";
     }
     cout << el;
 }
 
+void solve()
+{
+    ll n, x;
+    cin >> n >> x;
+    n %= LLONG_MAX;
+    cout << ((n % x == 0) ? "YES\n" : "NO\n");
+}
+
 int main()
 {
-    file;
+    // file;
     boost;
     ll t;
     cin >> t;
