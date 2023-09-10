@@ -15,37 +15,30 @@
 
 using namespace std;
 
-bool is_valid(ll num)
-{
-    ll sum = 0;
-    while (num)
-    {
-        sum += num % 10;
-        num /= 10;
-    }
-    return sum == 10;
-}
-
-void printVector(vector<ll> arr)
-{
-    for (auto elem : arr)
-    {
-        cout << elem << " ";
-    }
-    cout << el;
-}
-
 void solve()
 {
-    ll n, x;
-    cin >> n >> x;
-    n %= LLONG_MAX;
-    cout << ((n % x == 0) ? "YES\n" : "NO\n");
+    ll n, m;
+    cin >> n >> m;
+
+    string name, ip;
+    unordered_map<string, string> mp;
+    forN(n)
+    {
+        cin >> name >> ip;
+        mp[ip] = name;
+    }
+
+    forN(m)
+    {
+        cin >> name >> ip;
+        string modified_ip = ip.substr(0, ip.size() - 1);
+        cout << name << " " << ip << " #" << mp[modified_ip] << el;
+    }
 }
 
 int main()
 {
-    // file;
+    file;
     boost;
     ll t;
     cin >> t;
