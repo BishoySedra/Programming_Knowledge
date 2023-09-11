@@ -1,7 +1,7 @@
-YES
-NO
-NO
-NO
-NO
-YES
-NO
+block 192.168.0.1; #replica
+proxy 192.168.0.2; #main
+redirect 138.197.64.57; #server
+block 8.8.8.8; #google
+cf 212.193.33.27; #codeforces
+unblock 8.8.8.8; #google
+check 138.197.64.57; #server
