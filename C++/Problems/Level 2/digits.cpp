@@ -69,10 +69,108 @@ void printInOrderDigits(int number)
     printReversedDigits(number);
 }
 
+bool isPalindrome(int number)
+{
+    int temp = number;
+    reverseNumber(temp);
+    return number == temp;
+}
+
+void printInvertedPattern(int number)
+{
+    for (int i = number; i >= 1; i--)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            cout << i;
+        }
+        cout << "\n";
+    }
+}
+
+void printReversedInvertedPattern(int number)
+{
+    for (int i = 1; i <= number; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            cout << i;
+        }
+        cout << "\n";
+    }
+}
+
+void printInvertedPatternLetter(int number)
+{
+    for (int i = number; i >= 1; i--)
+    {
+        char letter = char(i + 64);
+        for (int j = 0; j < i; j++)
+        {
+            cout << letter;
+        }
+        cout << "\n";
+    }
+}
+
+void printReversedInvertedPatternLetter(int number)
+{
+    for (int i = 1; i <= number; i++)
+    {
+        char letter = char(i + 64);
+        for (int j = 0; j < i; j++)
+        {
+            cout << letter;
+        }
+        cout << "\n";
+    }
+}
+
+void allWordsFromThreeLetters()
+{
+    int cnt = 0;
+    for (int i = 1; i <= 26; i++)
+    {
+        for (int j = 1; j <= 26; j++)
+        {
+            for (int k = 1; k <= 26; k++)
+            {
+                cout << char(i + 64) << char(j + 64) << char(k + 64) << "\n";
+                cnt++;
+            }
+        }
+    }
+
+    cout << "words count: " << cnt << "\n";
+}
+
 int main()
 {
 
-    printInOrderDigits(1234);
+    allWordsFromThreeLetters();
+
+    // printReversedInvertedPatternLetter(3);
+    // cout << "=====================\n";
+    // printReversedInvertedPatternLetter(5);
+
+    // printInvertedPatternLetter(3);
+    // cout << "=====================\n";
+    // printInvertedPatternLetter(5);
+
+    // cout << int('C') << "\n";
+
+    // printReversedInvertedPattern(3);
+    // cout << "=====================\n";
+    // printReversedInvertedPattern(5);
+
+    // printInvertedPattern(3);
+    // cout << "=====================\n";
+    // printInvertedPattern(5);
+
+    // cout << isPalindrome(1234) << "\n";
+    // cout << isPalindrome(12321) << "\n";
+
+    // printInOrderDigits(1234);
 
     // printCountAllDigits(1223222);
 

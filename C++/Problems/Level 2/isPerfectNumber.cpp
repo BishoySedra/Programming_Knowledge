@@ -74,6 +74,8 @@ void print_perfects_from_1_to_n(int n)
     }
 }
 
+
+
 int main()
 {
     print_perfects_from_1_to_n(readNumber());
