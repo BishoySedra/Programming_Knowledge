@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 // #include <cstdlib>
 // #include <ctime>
 
@@ -114,7 +115,7 @@ void printInOrderDigits(int number)
     printReversedDigits(number);
 }
 
-bool isPalindrome(int number)
+bool isPalindromeNumber(int number)
 {
     int temp = number;
     reverseNumber(temp);
@@ -398,6 +399,33 @@ void addArrayElement(int arr[], int number, int &size)
     arr[size - 1] = number;
 };
 
+bool isDistinctArrayElement(int arr[], int size, int num)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] == num)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool isPalindromeArray(int arr[], int size)
+{
+    for (int i = 0, j = size - 1; i < size; i++)
+    {
+        if (arr[i] != arr[j])
+        {
+            return false;
+        }
+        j--;
+    }
+
+    return true;
+}
+
 // copying
 void copyArray(int src[], int dest[], int size, int &size2)
 {
@@ -440,11 +468,33 @@ void copyOddNumbersToArray(int src[], int dest[], int size, int &size2)
     }
 }
 
+void copyPrimeNumbersToArray(int src[], int dest[], int size, int &size2)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (isPrime(src[i]))
+        {
+            addArrayElement(dest, src[i], size2);
+        }
+    }
+}
+
 void sumTwoArraysToThird(int src1[], int src2[], int dest[], int size)
 {
     for (int i = 0; i < size; i++)
     {
         dest[i] = src1[i] + src2[i];
+    }
+}
+
+void copyDistinctNumbersToArray(int src[], int dest[], int size, int &size2)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (isDistinctArrayElement(dest, size2, src[i]))
+        {
+            addArrayElement(dest, src[i], size2);
+        }
     }
 }
 
@@ -457,17 +507,151 @@ void shuffleArray(int arr[], int size)
     }
 }
 
+// counting
+int countOddNumbersInArray(int arr[], int size)
+{
+    int cnt = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (even_or_odd(arr[i]) == numberType::Odd)
+        {
+            cnt++;
+        }
+    }
+
+    return cnt;
+}
+
+int countEvenNumbersInArray(int arr[], int size)
+{
+    int cnt = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (even_or_odd(arr[i]) == numberType::Even)
+        {
+            cnt++;
+        }
+    }
+
+    return cnt;
+}
+
+int countPositiveNumbersInArray(int arr[], int size)
+{
+    int cnt = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] > 0)
+        {
+            cnt++;
+        }
+    }
+
+    return cnt;
+}
+
+int countNegativeNumbersInArray(int arr[], int size)
+{
+    int cnt = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] < 0)
+        {
+            cnt++;
+        }
+    }
+
+    return cnt;
+}
+
+int myABS(int number)
+{
+    return ((number < 0) ? -number : number);
+}
+
+int myRound(double number)
+{
+    double temp = int(number) + 0.5;
+    int intPart = int(number);
+
+    if (number > 0 && number >= temp)
+    {
+        return intPart + 1;
+    }
+
+    if (number < 0 && number < temp)
+    {
+        return intPart - 1;
+    }
+
+    return intPart;
+}
+
+int myFloor(double number)
+{
+    int intPart = int(number);
+    return ((number < 0) ? --intPart : intPart);
+}
+
+int myCeil(double number)
+{
+    int intPart = int(number);
+    double fractionPart = number - int(number);
+
+    if (number > 0 && abs(fractionPart) > 0)
+    {
+        return ++intPart;
+    }
+
+    return intPart;
+}
+
+double mySqrt(int number)
+{
+    return pow(number, 0.5);
+}
+
 int main()
 {
     srand(static_cast<unsigned int>(time(nullptr)));
 
-    int arr1[100], arr2[100], size2 = 0;
-    fillArrayWithRandoms(arr1, 10, 1, 100);
-    cout << "Array1: ";
-    printIntegerArray(arr1, 10);
-    copyOddNumbersToArray(arr1, arr2, 10, size2);
-    cout << "Array2: ";
-    printIntegerArray(arr2, size2);
+    cout << mySqrt(26) << "\n";
+
+    // cout << myCeil(10.7) << "\n";
+    // cout << myCeil(-10.7) << "\n";
+
+    // cout << myFloor(10.7) << "\n";
+    // cout << myFloor(10.3) << "\n";
+    // cout << myFloor(-10.7) << "\n";
+
+    // cout << myRound(10.7) << "\n";
+    // cout << myRound(10.3) << "\n";
+    // cout << myRound(-10.7) << "\n";
+
+    // cout << myABS(10.5);
+
+    // int arr[100];
+    // fillArrayWithRandoms(arr, 3, 1, 100);
+    // printIntegerArray(arr, 3);
+    // cout << countOddNumbersInArray(arr, 3);
+
+    // int arr1[100];
+    // int size1 = fillArrayUntilNo(arr1);
+    // cout << (isPalindromeArray(arr1, size1) ? "Palindrome!\n" : "Not Palindrome!\n");
+
+    // int arr1[100], arr2[100], size = 0;
+    // fillArrayWithRandoms(arr1, 10, 1, 100);
+    // printIntegerArray(arr1, 10);
+    // copyPrimeNumbersToArray(arr1, arr2, 10, size);
+    // printIntegerArray(arr2, size);
+
+    // int arr1[100], arr2[100], size2 = 0;
+    // fillArrayWithRandoms(arr1, 10, 1, 100);
+    // cout << "Array1: ";
+    // printIntegerArray(arr1, 10);
+    // copyOddNumbersToArray(arr1, arr2, 10, size2);
+    // cout << "Array2: ";
+    // printIntegerArray(arr2, size2);
 
     // int arr1[100], arr2[100];
     // fillArrayWithRandoms(arr1, 10, 1, 100);
