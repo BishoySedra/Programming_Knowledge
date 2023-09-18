@@ -17,23 +17,16 @@ using namespace std;
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
+    ll r1, l1, r2, l2;
+    cin >> r1 >> l1 >> r2 >> l2;
 
-    string name, ip;
-    unordered_map<string, string> mp;
-    forN(n)
+    ll x = max(r1, r2), y = min(l1, l2);
+    if (x <= y)
     {
-        cin >> name >> ip;
-        mp[ip] = name;
+        cout << x << " " << y << el;
+        return;
     }
-
-    forN(m)
-    {
-        cin >> name >> ip;
-        string modified_ip = ip.substr(0, ip.size() - 1);
-        cout << name << " " << ip << " #" << mp[modified_ip] << el;
-    }
+    cout << -1 << el;
 }
 
 int main()
