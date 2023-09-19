@@ -15,30 +15,82 @@
 
 using namespace std;
 
+list<short> readList()
+{
+    short n, num;
+    cin >> n;
+
+    list<short> numbers;
+    forN(n)
+    {
+        cin >> num;
+        numbers.push_back(num);
+    }
+
+    return numbers;
+}
+
+void printFinalScores(list<short> numbers)
+{
+    int s = 0, d = 0;
+    auto start = numbers.begin(),
+         end = numbers.end();
+    end--;
+    while (!numbers.empty())
+    {
+        if (*start > *end)
+        {
+            s += *start;
+            numbers.erase(start);
+        }
+        else
+        {
+            s += *end;
+            numbers.pop_back();
+        }
+
+        start = numbers.begin();
+        end = numbers.end();
+        end--;
+
+        if (!numbers.empty())
+        {
+
+            if (*start > *end)
+            {
+                d += *start;
+                numbers.erase(start);
+            }
+            else
+            {
+                d += *end;
+                numbers.pop_back();
+            }
+
+            start = numbers.begin();
+            end = numbers.end();
+            end--;
+        }
+    }
+
+    cout << s << " " << d << el;
+}
+
 void solve()
 {
-    ll r1, l1, r2, l2;
-    cin >> r1 >> l1 >> r2 >> l2;
-
-    ll x = max(r1, r2), y = min(l1, l2);
-    if (x <= y)
-    {
-        cout << x << " " << y << el;
-        return;
-    }
-    cout << -1 << el;
+    printFinalScores(readList());
 }
 
 int main()
 {
-    file;
+    // file;
     boost;
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
-    // solve();
+    // ll t;
+    // cin >> t;
+    // while (t--)
+    // {
+    //     solve();
+    // }
+    solve();
     return 0;
 }
