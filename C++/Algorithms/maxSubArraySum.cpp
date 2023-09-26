@@ -15,28 +15,42 @@
 
 using namespace std;
 
+int maxSubArraySum(int start, int end, vector<int> arr)
+{
+    if (start >= end)
+    {
+        return 0;
+    }
+
+    int mid = (start + end) / 2,
+        firstHalf = maxSubArraySum(start, mid - 1, arr),
+        secondHalf = maxSubArraySum(mid + 1, end, arr);
+    return max({firstHalf,
+                firstHalf + arr[mid] + secondHalf,
+                secondHalf});
+}
+
 void solve()
 {
-    int n, m;
+    int n;
     cin >> n;
-
-    vector<ll> arr1(n);
+    vector<int> arr(n);
     forN(n)
     {
-        cin >> arr1[i];
+        cin >> arr[i];
     }
 
-    sort(interval(arr1));
-
-    cin >> m;
-
-    int num;
-    forN(m)
+    int sum = 0, bestSum = 0;
+    forN(n)
     {
-        cin >> num;
-        int index = upper_bound(interval(arr1), num) - arr1.begin();
-        cout << index << el;
+        sum += arr[i];
+        bestSum = max(sum, bestSum);
+        sum = max(sum, 0);
     }
+
+    cout << bestSum << el;
+
+    cout << maxSubArraySum(0, n, arr);
 }
 
 int main()

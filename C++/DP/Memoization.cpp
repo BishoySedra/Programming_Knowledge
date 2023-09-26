@@ -72,6 +72,21 @@ bool canSum(long long target, const vector<long long> &numbers)
     return false;
 }
 
+void countStairsIterative(int n)
+{
+    vector<long long> stairs(n + 1);
+    stairs[0] = 1;
+    stairs[1] = 1;
+    stairs[2] = 2;
+
+    for (int i = 3; i <= n; i++)
+    {
+        stairs[i] = stairs[i - 1] + stairs[i - 2] + stairs[i - 3];
+    }
+
+    cout << stairs[n] << "\n";
+}
+
 int main()
 {
     // fib test cases
@@ -96,11 +111,61 @@ int main()
     // =============================
 
     // canSum test cases
-    cout << canSum(3, {1, 2}) << "\n";
-    cout << canSum(3, {1, 3}) << "\n";
-    cout << canSum(7, {2, 4}) << "\n";
-    cout << canSum(8, {3, 5, 4}) << "\n";
-    cout << canSum(300, {7, 14}) << "\n";
+    // cout << canSum(3, {1, 2}) << "\n";
+    // cout << canSum(3, {1, 3}) << "\n";
+    // cout << canSum(7, {2, 4}) << "\n";
+    // cout << canSum(8, {3, 5, 4}) << "\n";
+    // cout << canSum(300, {7, 14}) << "\n";
+
+    // int n;
+    // cin >> n;
+    // countStairsIterative(n);
+
+    int n, m;
+    cin >> n >> m;
+    int grid[100][100];
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cin >> grid[i][j];
+        }
+    }
+
+    int dp[100][100];
+    dp[n - 1][m - 1] = grid[n - 1][m - 1];
+    for (int r = n - 1; r >= 0; r--)
+    {
+        for (int c = m - 1; c >= 0; c--)
+        {
+            int a = -1, b = a;
+            if (r == n - 1 && c == m - 1)
+            {
+                continue;
+            }
+
+            if (r + 1 < n)
+            {
+                a = dp[r + 1][c];
+            }
+
+            if (c + 1 < m)
+            {
+                b = dp[r][c + 1];
+            }
+            dp[r][c] = min(a, b) + grid[r][c];
+        }
+    }
+
+    cout << "===========================\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << dp[i][j] << " ";
+        }
+        cout << "\n";
+    }
 
     return 0;
 }

@@ -162,14 +162,99 @@ void printMiddleCol(int arr[][3], int rows, int cols)
     cout << "\n";
 }
 
-void sumMatrix(int arr[][3], int rows)
+int sumMatrix(int arr[][3], int rows)
 {
     int sum = 0;
     for (int i = 0; i < rows; i++)
     {
         sum += sumRow(arr, i);
     }
-    cout << sum;
+    return sum;
+}
+
+bool areTwoMatricesEqual(int arr1[][3], int arr2[][3], int rows)
+{
+    return sumMatrix(arr1, rows) == sumMatrix(arr2, rows);
+}
+
+bool areTwoMatricesTypical(int arr1[][3], int arr2[][3], int rows)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (arr1[i][j] != arr2[i][j])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+bool isIdentityMatrix(int arr[][3], int rows)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (i == j && arr[i][j] != 1)
+            {
+                return false;
+            }
+            else if (i != j && arr[i][j] != 0)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool isScalarMatrix(int arr[][3], int rows)
+{
+    int diagonalElem = arr[0][0];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (i == j && arr[i][j] != diagonalElem)
+            {
+                return false;
+            }
+            else if (i != j && arr[i][j] != 0)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int countNumberInMatrix(int arr[][3], int rows, int number)
+{
+
+    int cnt = 0;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (arr[i][j] == number)
+            {
+                cnt++;
+            }
+        }
+    }
+
+    return cnt;
+}
+
+bool isSparseMatrix(int arr[][3], int rows)
+{
+    int countOfZeros = countNumberInMatrix(arr, rows, 0), countOfNonZero = (rows * 3) - countOfZeros;
+    return countOfZeros > countOfNonZero;
 }
 
 int main()
