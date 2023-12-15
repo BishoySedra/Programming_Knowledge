@@ -1,3 +1,0 @@
-﻿  Online_Bookstore_System.cpp
-C:\Users\bisho\Project\Programming_Knowledge\Programming Advices\OOP - Concepts\Online_Bookstore_System\Online_Bookstore_System.cpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\bisho\Project\Programming_Knowledge\Programming Advices\OOP - Concepts\Online_Bookstore_System\Book.h(64): error C4716: 'Book::getInfo': must return a value
