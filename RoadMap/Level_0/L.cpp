@@ -17,19 +17,29 @@ using namespace std;
 
 void solve()
 {
-    int cnt = int('B') + int('R') + int('G') + int('H');
-    // cout << cnt << el;
-    string word;
-    forN(3)
+    ll n;
+    cin >> n;
+
+    set<pair<string, string>> st;
+    pair<string, string> fullname;
+    string firstName, lastName;
+    forN(n)
     {
-        cin >> word;
-        cnt -= int(word[1]);
+        cin >> firstName >> lastName;
+        fullname.first = firstName;
+        fullname.second = lastName;
+        if (!st.count(fullname))
+        {
+            st.insert(fullname);
+        }
+        else
+        {
+            cout << "Yes" << el;
+            return;
+        }
     }
-    // cout << char(cnt) << el;
-    word = 'A';
-    word += char(cnt);
-    word += 'C';
-    cout << word;
+
+    cout << "No" << el;
 }
 
 int main()

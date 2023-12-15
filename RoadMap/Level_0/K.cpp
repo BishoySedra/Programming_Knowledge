@@ -17,19 +17,26 @@ using namespace std;
 
 void solve()
 {
-    int cnt = int('B') + int('R') + int('G') + int('H');
-    // cout << cnt << el;
-    string word;
-    forN(3)
+    double num, digit;
+    cin >> num;
+    digit = int((num - int(num)) * 10);
+    // cout << digit;
+    if (digit >= 0 && digit <= 2)
     {
-        cin >> word;
-        cnt -= int(word[1]);
+        cout << int(num) << '-';
+        return;
     }
-    // cout << char(cnt) << el;
-    word = 'A';
-    word += char(cnt);
-    word += 'C';
-    cout << word;
+    if (digit >= 3 && digit <= 6)
+    {
+        cout << int(num);
+        return;
+    }
+    if (digit >= 7 && digit <= 9)
+    {
+        cout << int(num) << '+';
+        // cout << int(num);
+        return;
+    }
 }
 
 int main()
