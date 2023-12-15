@@ -15,28 +15,42 @@
 
 using namespace std;
 
+void printVector(vector<ll> v)
+{
+    for (auto elem : v)
+    {
+        cout << elem << " ";
+    }
+}
+
+void printDeque(deque<ll> v)
+{
+    for (auto elem : v)
+    {
+        cout << elem << " ";
+    }
+}
+
 void solve()
 {
-    int n, m;
-    cin >> n;
+    set<char> st;
+    char letter;
+    ll n;
 
-    vector<ll> arr1(n);
+    cin >> n;
     forN(n)
     {
-        cin >> arr1[i];
+        cin >> letter;
+        st.insert(letter);
     }
 
-    sort(interval(arr1));
-
-    cin >> m;
-
-    int num;
-    forN(m)
+    if (st.size() & 1)
     {
-        cin >> num;
-        int index = upper_bound(interval(arr1), num) - arr1.begin();
-        cout << index << el;
+        cout << "Stop\n";
+        return;
     }
+
+    cout << "Continue\n";
 }
 
 int main()
