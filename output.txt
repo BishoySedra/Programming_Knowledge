@@ -1,4 +1,2 @@
-Continue
-Stop
-Continue
-Continue
+BA
+ZZ

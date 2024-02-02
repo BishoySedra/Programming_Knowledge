@@ -15,54 +15,75 @@
 
 using namespace std;
 
-void printVector(vector<ll> v)
+// prime factorization
+vector<int> PF(ll n)
 {
-    for (auto elem : v)
+    vector<int> res;
+    for (int i = 2; i * i <= n; i++)
     {
-        cout << elem << " ";
+        while (n % i == 0)
+        {
+            res.push_back(i);
+            n /= i;
+        }
     }
+    if (n != 1)
+    {
+        res.push_back(n);
+    }
+    return res;
 }
 
-void printDeque(deque<ll> v)
+void print_vector(vector<int> v)
 {
-    for (auto elem : v)
+    for (auto x : v)
     {
-        cout << elem << " ";
+        cout << x << " ";
     }
+    cout << el;
 }
 
 void solve()
 {
-    set<char> st;
-    char letter;
-    ll n;
-
+    int n;
     cin >> n;
+
+    string word;
+    cin >> word;
+
+    map<string, int> substring_to_count;
     forN(n)
     {
-        cin >> letter;
-        st.insert(letter);
+
+        if (i + 1 == n)
+        {
+            continue;
+        }
+
+        string sub = word.substr(i, 2);
+
+        substring_to_count[sub]++;
     }
 
-    if (st.size() & 1)
+    map<int, string> negative_count_to_substring;
+    for (auto it : substring_to_count)
     {
-        cout << "Stop\n";
-        return;
+        negative_count_to_substring[-it.second] = it.first;
     }
 
-    cout << "Continue\n";
+    cout << negative_count_to_substring.begin()->second << el;
 }
 
 int main()
 {
-    // file;
+    file;
     boost;
-    // ll t;
-    // cin >> t;
-    // while (t--)
-    // {
-    //     solve();
-    // }
-    solve();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    // solve();
     return 0;
 }
