@@ -15,63 +15,35 @@
 
 using namespace std;
 
-// prime factorization
-vector<int> PF(ll n)
-{
-    vector<int> res;
-    for (int i = 2; i * i <= n; i++)
-    {
-        while (n % i == 0)
-        {
-            res.push_back(i);
-            n /= i;
-        }
-    }
-    if (n != 1)
-    {
-        res.push_back(n);
-    }
-    return res;
-}
-
-void print_vector(vector<int> v)
-{
-    for (auto x : v)
-    {
-        cout << x << " ";
-    }
-    cout << el;
-}
-
 void solve()
 {
-    int n;
-    cin >> n;
+    ll buttons, bulbs;
+    cin >> buttons >> bulbs;
 
-    string word;
-    cin >> word;
-
-    map<string, int> substring_to_count;
-    forN(n)
+    ll number_of_bulbs;
+    unordered_map<ll, bool> bulb_map;
+    forN(buttons)
     {
+        cin >> number_of_bulbs;
 
-        if (i + 1 == n)
+        ll bulb_number;
+        for (int j = 0; j < number_of_bulbs; j++)
         {
-            continue;
+            cin >> bulb_number;
+            bulb_map[bulb_number] = true;
         }
-
-        string sub = word.substr(i, 2);
-
-        substring_to_count[sub]++;
     }
 
-    map<int, string> negative_count_to_substring;
-    for (auto it : substring_to_count)
+    for (int i = 1; i <= bulbs; i++)
     {
-        negative_count_to_substring[-it.second] = it.first;
+        if (bulb_map.find(i) == bulb_map.end())
+        {
+            cout << "NO" << el;
+            return;
+        }
     }
 
-    cout << negative_count_to_substring.begin()->second << el;
+    cout << "YES" << el;
 }
 
 int main()
