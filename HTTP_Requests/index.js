@@ -2,6 +2,7 @@ import axios from "axios";
 import needle from "needle";
 import XMLHttpRequest from "xhr2";
 
+// based promise-based, allows timeout limit and more configuration
 const fetchDataAxios = async () => {
   try {
     // Making a GET request with Axios
@@ -14,8 +15,11 @@ const fetchDataAxios = async () => {
   }
 };
 
-const fetchDataNeedle = () => {
+// based callback-based API
+const fetchDataNeedle = async () => {
   // Making a GET request with Needle
+
+  // callback-based
   needle.get(
     "https://api.weatherapi.com/v1/current.json?key=1f8382b33541493dacf173454240802&q=Cairo&aqi=no",
     (error, response) => {
@@ -26,14 +30,26 @@ const fetchDataNeedle = () => {
       }
     }
   );
+
+  // promise approach
+  const res = await needle(
+    "get",
+    "https://api.weatherapi.com/v1/current.json?key=1f8382b33541493dacf173454240802&q=Cairo&aqi=no"
+  );
+
+  console.log("Needle GET response:", res.body.current.temp_f);
 };
 
+// Unlike XMLHttpRequest that is a callback-based API, Fetch is promise-based
+
+// based promise-based
 const fetchDataFetch = async () => {
   try {
     // Making a GET request with Fetch API
     const fetchResponse = await fetch(
       "https://api.weatherapi.com/v1/current.json?key=1f8382b33541493dacf173454240802&q=Cairo&aqi=no"
     );
+    console.log(fetchResponse.headers.get("content-type"));
     const fetchJson = await fetchResponse.json();
     console.log("Fetch GET response:", fetchJson.current.temp_f);
   } catch (error) {
@@ -41,6 +57,7 @@ const fetchDataFetch = async () => {
   }
 };
 
+// based callback-based API
 const fetchDataXMLHttpRequest = () => {
   const xhr = new XMLHttpRequest();
 
@@ -49,6 +66,9 @@ const fetchDataXMLHttpRequest = () => {
     "GET",
     "https://api.weatherapi.com/v1/current.json?key=1f8382b33541493dacf173454240802&q=Cairo&aqi=no"
   );
+
+  xhr.send();
+
   xhr.onload = () => {
     if (xhr.status === 200) {
       console.log(
@@ -59,10 +79,10 @@ const fetchDataXMLHttpRequest = () => {
       console.error("XMLHttpRequest error:", xhr.statusText);
     }
   };
+
   xhr.onerror = () => {
     console.error("XMLHttpRequest request failed");
   };
-  xhr.send();
 };
 
 // Call each function to execute the requests
