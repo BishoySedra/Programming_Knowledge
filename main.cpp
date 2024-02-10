@@ -17,33 +17,18 @@ using namespace std;
 
 void solve()
 {
-    ll buttons, bulbs;
-    cin >> buttons >> bulbs;
+    ll cost, total, bananas_cnt;
+    cin >> cost >> total >> bananas_cnt;
 
-    ll number_of_bulbs;
-    unordered_map<ll, bool> bulb_map;
-    forN(buttons)
+    ll total_cost = bananas_cnt * (bananas_cnt + 1) / 2 * cost;
+
+    if (total_cost <= total)
     {
-        cin >> number_of_bulbs;
-
-        ll bulb_number;
-        for (int j = 0; j < number_of_bulbs; j++)
-        {
-            cin >> bulb_number;
-            bulb_map[bulb_number] = true;
-        }
+        cout << 0 << el;
+        return;
     }
 
-    for (int i = 1; i <= bulbs; i++)
-    {
-        if (bulb_map.find(i) == bulb_map.end())
-        {
-            cout << "NO" << el;
-            return;
-        }
-    }
-
-    cout << "YES" << el;
+    cout << total_cost - total << el;
 }
 
 int main()
