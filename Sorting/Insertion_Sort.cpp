@@ -1,8 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 #define speed ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
 using namespace std;
+
+int cnt = 0;
 
 void insertionSort(int *arr, int n) // O(n^2)
 {
@@ -11,8 +13,14 @@ void insertionSort(int *arr, int n) // O(n^2)
     {
         int key = arr[i], j = i - 1;
 
+        if (key >= arr[j])
+        {
+            cnt++;
+        }
+
         while (key < arr[j] && j >= 0)
         {
+            cnt++;
             arr[j + 1] = arr[j];
             j--;
         }
@@ -25,7 +33,7 @@ int main()
 {
     speed;
 
-    int arr[] = {12, 11, 13, 5, 6};
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1};
     int n = sizeof(arr) / sizeof(arr[0]);
 
     insertionSort(arr, n);
@@ -34,6 +42,8 @@ int main()
     {
         cout << arr[i] << " ";
     }
+
+    cout << "\nComparisons: " << cnt << endl;
 
     return 0;
 }
