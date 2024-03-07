@@ -1,7 +1,8 @@
-# INSERTION SORT
+# Insertion Sort
 
 ![Sorting Algorithm GIF](https://upload.wikimedia.org/wikipedia/commons/9/9c/Insertion-sort-example.gif)
 
-### WORST CASE --> O(n^2)
+## Time Complexity
 
-### BEST CASE --> O(n)
+- Worst Case: O(n^2)
+- Best Case: O(n)
