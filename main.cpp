@@ -15,20 +15,63 @@
 
 using namespace std;
 
-void solve()
+ll compute(string number, ll index, ll size)
 {
-    ll cost, total, bananas_cnt;
-    cin >> cost >> total >> bananas_cnt;
+    // split the string into two parts
+    string first, second;
 
-    ll total_cost = bananas_cnt * (bananas_cnt + 1) / 2 * cost;
-
-    if (total_cost <= total)
+    if (number[index] == '0')
     {
-        cout << 0 << el;
-        return;
+        first = number.substr(0, index + 1);
+        second = number.substr(index + 1, size);
+    }
+    else
+    {
+        first = number.substr(0, index);
+        second = number.substr(index, size);
     }
 
-    cout << total_cost - total << el;
+    // convert the strings into integers
+    int num1 = 0, num2 = 0;
+    try
+    {
+        num1 = stoll(first);
+        num2 = stoll(second);
+    }
+    catch (const std::invalid_argument &e)
+    {
+        // cout << first << " " << second << el;
+        // cout << num1 << " " << num2 << el;
+        // cout << "Answer: " << num1 + num2 << el;
+    }
+
+    return num1 + num2;
+}
+
+void solve()
+{
+    ll n;
+    cin >> n;
+
+    string number;
+    cin >> number;
+
+    ll l = 0, r = n - 1, answer = LLONG_MAX;
+    while (l < n)
+    {
+        answer = min(answer, compute(number, l, n));
+        l++;
+    }
+
+    while (r >= 0)
+    {
+        answer = min(answer, compute(number, r, n));
+        r--;
+    }
+
+    cout << answer << el;
+
+    cout << "=================" << el;
 }
 
 int main()

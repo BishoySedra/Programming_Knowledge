@@ -9,7 +9,7 @@ void merge(double *arr, int start_1, int end_1, int start_2, int end_2)
     int n1 = end_1 - start_1 + 1;
     int n2 = end_2 - start_2 + 1;
 
-    double temp[n1 + n2];
+    double *temp = new double[n1 + n2];
 
     int i = start_1, j = start_2, k = 0;
 
