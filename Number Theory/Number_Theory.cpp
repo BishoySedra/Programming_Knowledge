@@ -128,6 +128,9 @@ ll LCM(ll a, ll b)
 
 void solve()
 {
+    ll n, m;
+    cin >> n >> m;
+    cout << fixMod(n, m) << el;
 }
 
 int main()
