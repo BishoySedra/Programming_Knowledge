@@ -8,9 +8,32 @@ Here are some key concepts to understand when working with ReactJS:
 
 **IMPORTANT NOTE:** React is all about building reusable components. In fact, with React, you're usually building small components that turn into larger ones. This makes your code more predictable and easier to debug, a huge advantage when building large-scale applications.
 
-## Execution of JSX Code and Using State Hook
+## Execution of JSX Code
 
 Under the hood, JSX code is transformed into regular JavaScript code by tools like Babel before it's rendered in the browser. For example, JSX elements are transformed into `React.createElement()` calls, which create React elements.
+
+Consider the following JSX code:
+
+```jsx
+const element = <h1>Hello, world!</h1>;
+```
+
+This JSX code looks like HTML, but under the hood, it's transformed into JavaScript code using `React.createElement()`:
+
+```javascript
+const element = React.createElement("h1", null, "Hello, world!");
+```
+
+In this example:
+
+- The JSX `<h1>Hello, world!</h1>` is transformed into the `React.createElement()` function call.
+- The first argument to `React.createElement()` is the type of element (`'h1'` in this case).
+- The second argument is for the element's attributes (e.g., `id`, `className`, etc.), which is `null` in this case.
+- The third argument is for the children of the element, which is the text `'Hello, world!'`.
+
+So, the JSX code is essentially syntactic sugar for creating React elements in a more familiar HTML-like syntax. Under the hood, it's all JavaScript.
+
+## Using State Hook
 
 React provides a built-in `useState` hook that allows functional components to manage state. The `useState` hook returns a stateful value and a function to update it. You can use the `useState` hook in functional components to add state management capabilities without converting them to class components.
 
@@ -22,7 +45,7 @@ function Counter() {
   const [count, setCount] = useState(0);
 
   const clickHandler = () => {
-    setCount(count);
+    setCount(count + 1);
   };
 
   return (
