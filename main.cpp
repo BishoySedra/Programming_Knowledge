@@ -15,75 +15,46 @@
 
 using namespace std;
 
-ll compute(string number, ll index, ll size)
+const int MOD = 1e9 + 7;
+
+long long countDiceCombinations(int targetSum)
 {
-    // split the string into two parts
-    string first, second;
+    vector<long long> dp(targetSum + 1, 0);
 
-    if (number[index] == '0')
-    {
-        first = number.substr(0, index + 1);
-        second = number.substr(index + 1, size);
-    }
-    else
-    {
-        first = number.substr(0, index);
-        second = number.substr(index, size);
-    }
+    dp[0] = 1;
 
-    // convert the strings into integers
-    int num1 = 0, num2 = 0;
-    try
+    for (int sum = 1; sum <= targetSum; sum++)
     {
-        num1 = stoll(first);
-        num2 = stoll(second);
-    }
-    catch (const std::invalid_argument &e)
-    {
-        // cout << first << " " << second << el;
-        // cout << num1 << " " << num2 << el;
-        // cout << "Answer: " << num1 + num2 << el;
+        for (int diceValue = 1; diceValue <= 6; diceValue++)
+        {
+            if (sum - diceValue >= 0)
+            {
+                dp[sum] += (dp[sum - diceValue] % MOD);
+            }
+        }
     }
 
-    return num1 + num2;
+    return dp[targetSum];
 }
 
 void solve()
 {
-    ll n;
-    cin >> n;
-
-    string number;
-    cin >> number;
-
-    ll l = 0, r = n - 1, answer = LLONG_MAX;
-    while (l < n)
-    {
-        answer = min(answer, compute(number, l, n));
-        l++;
-    }
-
-    while (r >= 0)
-    {
-        answer = min(answer, compute(number, r, n));
-        r--;
-    }
-
-    cout << answer << el;
-
-    cout << "=================" << el;
+    int sum;
+    cin >> sum;
+    cout << countDiceCombinations(sum) % MOD << el;
 }
 
 int main()
 {
-    file;
+    // file;
     boost;
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
-    // solve();
+    // ll t;
+    // cin >> t;
+    // while (t--)
+    // {
+    //     // memset(mem, -1, sizeof mem);
+    //     solve();
+    // }
+    solve();
     return 0;
 }

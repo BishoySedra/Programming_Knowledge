@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 #define boost ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 #define el "\n"
@@ -29,7 +29,9 @@ int GetMultiplicativeInverse(int number, int baseN)
         b1 = 0,
         b2 = 1,
         b3 = number;
-
+    int row_index = 1;
+    cout << "  q" << " " << "a1" << " " << "a2" << " " << "a3" << " " << "b1" << " " << "b2" << " " << "b3" << el;
+    cout << row_index << " ==> " << "-- " << a1 << " " << a2 << " " << a3 << " " << b1 << " " << b2 << " " << b3 << el;
     while (b3 != 0 && b3 != 1)
     {
         q = a3 / b3;
@@ -45,6 +47,10 @@ int GetMultiplicativeInverse(int number, int baseN)
         temp = a3 - b3 * q;
         a3 = b3;
         b3 = temp;
+
+        row_index++;
+
+        cout << row_index << " ==> " << q << " " << a1 << " " << a2 << " " << a3 << " " << b1 << " " << b2 << " " << b3 << el;
     }
 
     if (b3 == 1)

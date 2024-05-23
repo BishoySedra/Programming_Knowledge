@@ -1,3 +1,4 @@
-.vscode/
-a.exe
-main.exe
+**/a.exe
+**/main.exe
+**/.vscode
+**/settings.json
