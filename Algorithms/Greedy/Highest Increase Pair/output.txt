@@ -1,0 +1,1 @@
+Max difference: 177 -93 84
