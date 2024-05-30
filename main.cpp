@@ -15,33 +15,48 @@
 
 using namespace std;
 
-const int MOD = 1e9 + 7;
+vector<ll> stones;
+const int N = 1e5;
+ll mem[N + 1];
 
-long long countDiceCombinations(int targetSum)
+ll getMinCost(ll stoneIndex, ll target)
 {
-    vector<long long> dp(targetSum + 1, 0);
 
-    dp[0] = 1;
-
-    for (int sum = 1; sum <= targetSum; sum++)
+    if (stoneIndex == target)
     {
-        for (int diceValue = 1; diceValue <= 6; diceValue++)
-        {
-            if (sum - diceValue >= 0)
-            {
-                dp[sum] += (dp[sum - diceValue] % MOD);
-            }
-        }
+        return 0;
     }
 
-    return dp[targetSum];
+    if (mem[stoneIndex] != -1)
+    {
+        return mem[stoneIndex];
+    }
+
+    ll cost1 = abs(stones[stoneIndex] - stones[stoneIndex - 1]) + getMinCost(stoneIndex - 1, target);
+    ll cost2 = LLONG_MAX;
+    // ll cost3 = getMinCost(stoneIndex - 1, target);
+    // ll cost4 = getMinCost(stoneIndex - 2, target);
+    if (stoneIndex - 2 >= 0)
+    {
+        cost2 = abs(stones[stoneIndex] - stones[stoneIndex - 2]) + getMinCost(stoneIndex - 2, target);
+    }
+
+    return mem[stoneIndex] = min(cost1, cost2);
 }
 
 void solve()
 {
-    int sum;
-    cin >> sum;
-    cout << countDiceCombinations(sum) % MOD << el;
+    ll stonesNumber;
+    cin >> stonesNumber;
+
+    stones.resize(stonesNumber);
+
+    forN(stonesNumber)
+    {
+        cin >> stones[i];
+    }
+
+    cout << getMinCost(stonesNumber - 1, 0) << el;
 }
 
 int main()
@@ -52,7 +67,7 @@ int main()
     // cin >> t;
     // while (t--)
     // {
-    //     // memset(mem, -1, sizeof mem);
+    //     memset(mem, -1, sizeof mem);
     //     solve();
     // }
     solve();
