@@ -15,61 +15,61 @@
 
 using namespace std;
 
-vector<ll> stones;
-const int N = 1e5;
-ll mem[N + 1];
-
-ll getMinCost(ll stoneIndex, ll target)
-{
-
-    if (stoneIndex == target)
-    {
-        return 0;
-    }
-
-    if (mem[stoneIndex] != -1)
-    {
-        return mem[stoneIndex];
-    }
-
-    ll cost1 = abs(stones[stoneIndex] - stones[stoneIndex - 1]) + getMinCost(stoneIndex - 1, target);
-    ll cost2 = LLONG_MAX;
-    // ll cost3 = getMinCost(stoneIndex - 1, target);
-    // ll cost4 = getMinCost(stoneIndex - 2, target);
-    if (stoneIndex - 2 >= 0)
-    {
-        cost2 = abs(stones[stoneIndex] - stones[stoneIndex - 2]) + getMinCost(stoneIndex - 2, target);
-    }
-
-    return mem[stoneIndex] = min(cost1, cost2);
-}
-
 void solve()
 {
-    ll stonesNumber;
-    cin >> stonesNumber;
+    ll arraySize;
+    cin >> arraySize;
 
-    stones.resize(stonesNumber);
+    vector<ll> myArray(arraySize), desiredArray(arraySize + 1);
 
-    forN(stonesNumber)
+    forN(arraySize)
     {
-        cin >> stones[i];
+        cin >> myArray[i];
     }
 
-    cout << getMinCost(stonesNumber - 1, 0) << el;
+    forN(arraySize + 1)
+    {
+        cin >> desiredArray[i];
+    }
+
+    int lastElement = desiredArray[arraySize];
+    bool isCalculated = false;
+    ll cnt = 0;
+
+    forN(arraySize)
+    {
+        cnt += abs(myArray[i] - desiredArray[i]);
+    }
+
+    ll minDiff = LLONG_MAX;
+    forN(arraySize)
+    {
+        bool isBetween1 = lastElement >= desiredArray[i] && lastElement <= myArray[i];
+        bool isBetween2 = lastElement <= desiredArray[i] && lastElement >= myArray[i];
+        if (lastElement == myArray[i] || lastElement == desiredArray[i] || isBetween1 || isBetween2)
+        {
+            minDiff = 0;
+            break;
+        }
+
+        ll diff1 = abs(lastElement - myArray[i]);
+        ll diff2 = abs(lastElement - desiredArray[i]);
+        minDiff = min(minDiff, min(diff1, diff2));
+    }
+
+    cout << cnt + minDiff + 1 << el;
 }
 
 int main()
 {
-    // file;
+    file;
     boost;
-    // ll t;
-    // cin >> t;
-    // while (t--)
-    // {
-    //     memset(mem, -1, sizeof mem);
-    //     solve();
-    // }
-    solve();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    // solve();
     return 0;
 }
